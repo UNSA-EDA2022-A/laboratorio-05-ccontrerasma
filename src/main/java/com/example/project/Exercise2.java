@@ -13,9 +13,29 @@ public class Exercise2 {
     }
 
     public boolean existenDuplicados(String str) {
-        MyStack<Character> stack = new LinkedListStack<>();
-        // Colocar codigo aqui
+    	 MyStack<Character> stack = new LinkedListStack<>(); 
+         for (int i = 0; i < str.length(); i++) {
+        	
+        	 //Solo se verificara cuando haya un cierre
+             if (str.charAt(i) == ')') {
+                 char ultimo = stack.pop();
+                 int cont = 0;
+                 //Si no es abierto el contador aumentara y los borrara
+                 while (ultimo!='(') {
+                     cont++;
+                     ultimo = stack.pop();
+                 }
+                 //Cuando el contador sea 0, significa que entre dos paresentesis hay uno de rreleno
+                 if (cont < 1) {
+                     return true;
+                 }
+             }
+             //De lo contario solo los guardara en la pila
+             else {
+                 stack.push(str.charAt(i));
+             }
+         }
 
-        return false;
+         return false;
     }
 }
